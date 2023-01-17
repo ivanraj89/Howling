@@ -11,6 +11,9 @@ namespace Howling
 		void Run();
 	};
 
+	// To be defined in client 
+
+	Application* CreateApplication();
 	
 }
 
