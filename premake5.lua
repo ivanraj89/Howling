@@ -15,12 +15,12 @@ project "Howling"
 	kind"SharedLib"
 	language "C++"
 
-	targetdir ("bin/ .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/ .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
-		"%{prj.name}/src/**.h"
+		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 
@@ -34,7 +34,7 @@ project "Howling"
 		staticruntime "On"
 		systemversion "latest"
 
-		define
+		defines
 		{
 			"HW_PLATFORM_WINDOWS",
 			"HW_BUILD_DLL"
@@ -42,7 +42,7 @@ project "Howling"
 
 		postbuildcommands
 		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outdir .. "/Sandbox")
+			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/Sandbox")
 		}
 
 		filter "configurations:Debug"
@@ -63,18 +63,18 @@ project "Sandbox"
 	kind "ConsoleApp"
 	language "C++"
 
-	targetdir ("bin/ .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/ .. outputdir .. "/%{prj.name}")
+	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
+	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 
 	files
 	{
-		"%{prj.name}/src/**.h"
+		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp"
 	}
 
 	includedirs
 	{
-		"%{prj.name}/vendor/spdlog/include;"
+		"Howling/vendor/spdlog/include;",
 		"Howling/src"
 	}
 
@@ -88,7 +88,7 @@ project "Sandbox"
 		staticruntime "On"
 		systemversion "latest"
 
-		define
+		defines
 		{
 			"HW_PLATFORM_WINDOWS"
 		}
